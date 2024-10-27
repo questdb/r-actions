@@ -204,12 +204,6 @@ runs:
         shell: Rscript {0}
         working-directory: ${{ inputs.working-directory }}
 
-      - name: Install pandoc if needed
-        if: ${{ steps.check-pandoc.outputs.install == 'true' }}
-        uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: ${{ inputs.pandoc-version }}
-
       - name: Check whether quarto if needed
         id: check-quarto
         run: |
@@ -235,12 +229,6 @@ runs:
           cat("::endgroup::\n")
         shell: Rscript {0}
         working-directory: ${{ inputs.working-directory }}
-
-      - name: Install quarto if needed
-        if: ${{ steps.check-quarto.outputs.install == 'true' }}
-        uses: quarto-dev/quarto-actions/setup@577558713f28cb3a0e7a735f80dce913d89b77d2
-        with:
-          version: ${{ inputs.quarto-version }}
 
       - name: Session info
         run: |
